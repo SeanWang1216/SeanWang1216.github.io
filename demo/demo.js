@@ -40,6 +40,8 @@
         const steps = Array.from(stage.querySelectorAll('.instruction-step'));
         const outerNav = stage.querySelector('.flow-nav');
         let currentStep = 0;
+        let selectedRow = '';
+        let selectedColumn = '';
         outerNav.style.display = 'none';
         const nav = document.createElement('div');
         nav.className = 'flow-nav instruction-flow-nav';
@@ -47,6 +49,9 @@
         stage.querySelector('.instruction-progress').after(nav);
         const back = nav.querySelector('.secondary');
         const next = nav.querySelector('button:not(.secondary)');
+        const note = document.createElement('p');
+        note.className = 'instruction-nav-note';
+        nav.after(note);
 
         function render() {
             steps.forEach((step, index) => step.classList.toggle('instruction-section-hidden', index !== currentStep));
@@ -54,8 +59,17 @@
             if (progress) {
                 progress.textContent = `Section ${currentStep + 1} of ${steps.length}`;
             }
-            back.disabled = currentStep === 0;
+            back.classList.toggle('instruction-nav-hidden', currentStep === 0);
             next.textContent = currentStep === steps.length - 1 ? 'Continue' : 'Next';
+            note.textContent = '';
+            const stepId = steps[currentStep].id.replace(`${stageId === 'aggregated-instructions' ? 'agg' : 'dec'}-`, '');
+            if (stepId === 'section-action-selection' && !selectedRow) {
+                note.textContent = 'Click Top or Bottom in A\'s example to continue.';
+            } else if (stepId === 'section-b-action-selection' && !selectedColumn) {
+                note.textContent = 'Click Left or Right in B\'s example to continue.';
+            } else if (stepId === 'section-payoff-calculation' && !(selectedRow && selectedColumn)) {
+                note.textContent = 'Choose one row and one column before continuing.';
+            }
         }
 
         back.addEventListener('click', () => {
@@ -67,7 +81,9 @@
         const skip = stage.querySelector('.skip-table-sections button');
         if (skip) {
             skip.addEventListener('click', () => {
-                const target = steps.findIndex((step) => step.id.endsWith('section-action-selection'));
+                const target = steps.findIndex((step, index) =>
+                    index > currentStep && !step.id.includes('section-table-')
+                );
                 if (target >= 0) {
                     currentStep = target;
                     render();
@@ -75,6 +91,10 @@
             });
         }
         next.addEventListener('click', () => {
+            const stepId = steps[currentStep].id.replace(`${stageId === 'aggregated-instructions' ? 'agg' : 'dec'}-`, '');
+            if (stepId === 'section-action-selection' && !selectedRow) return;
+            if (stepId === 'section-b-action-selection' && !selectedColumn) return;
+            if (stepId === 'section-payoff-calculation' && !(selectedRow && selectedColumn)) return;
             if (currentStep < steps.length - 1) {
                 currentStep += 1;
                 render();
@@ -82,24 +102,95 @@
                 showStage(nextStage);
             }
         });
+        stage.querySelectorAll('.player-a-click-cell, .intro-a-row-click, .combined-row').forEach((cell) => {
+            cell.addEventListener('click', () => {
+                selectedRow = selectedRow === cell.dataset.action ? '' : cell.dataset.action;
+                stage.querySelectorAll('[data-row]').forEach((item) => {
+                    if (item.closest('.instruction-step') === steps[currentStep] ||
+                        item.closest('.instruction-step')?.id.includes('action-selection') ||
+                        item.closest('.instruction-step')?.id.includes('payoff-calculation')) {
+                        item.classList.toggle('is-selected', Boolean(selectedRow) && item.dataset.row === selectedRow);
+                    }
+                });
+                updateInstructionExamples(stage, selectedRow, selectedColumn);
+                render();
+            });
+        });
+        stage.querySelectorAll('.player-b-click-cell, .intro-b-column-click, .combined-column').forEach((cell) => {
+            cell.addEventListener('click', () => {
+                selectedColumn = selectedColumn === cell.dataset.action ? '' : cell.dataset.action;
+                stage.querySelectorAll('[data-col]').forEach((item) => {
+                    if (item.closest('.instruction-step') === steps[currentStep] ||
+                        item.closest('.instruction-step')?.id.includes('action-selection') ||
+                        item.closest('.instruction-step')?.id.includes('payoff-calculation')) {
+                        item.classList.toggle('is-selected', Boolean(selectedColumn) && item.dataset.col === selectedColumn);
+                    }
+                });
+                updateInstructionExamples(stage, selectedRow, selectedColumn);
+                render();
+            });
+        });
         render();
     }
 
-    function answer(form, answers, feedback, nextStage) {
+    function updateInstructionExamples(stage, row, column) {
+        stage.querySelectorAll('td[data-row][data-col]').forEach((cell) => {
+            const selected = (row && cell.dataset.row === row) || (column && cell.dataset.col === column);
+            const outcome = row && column && cell.dataset.row === row && cell.dataset.col === column;
+            cell.classList.toggle('is-selected', Boolean(selected));
+            cell.classList.toggle('realized-outcome', Boolean(outcome));
+        });
+        const results = stage.querySelectorAll('.example-results');
+        results.forEach((result) => {
+            if (row && column) {
+                result.textContent = `A selected ${row}; B selected ${column}. The selected outcome is highlighted.`;
+            } else if (row) {
+                result.textContent = `A selected ${row}. Now choose B's column.`;
+            } else if (column) {
+                result.textContent = `B selected ${column}. Now choose A's row.`;
+            }
+        });
+    }
+
+    function answer(form, answers, feedback, nextStage, firstPageCount, messages) {
+        let page = 0;
+        let attempts = 0;
+        const fieldsets = Array.from(form.querySelectorAll('fieldset'));
+        const submit = form.querySelector('button[type="submit"]');
+        function render() {
+            fieldsets.forEach((fieldset, index) => {
+                const visible = page === 0
+                    ? index < firstPageCount
+                    : index >= firstPageCount;
+                fieldset.hidden = !visible;
+            });
+            submit.textContent = page === 0 ? 'Next' : 'Submit answers';
+            feedback.classList.remove('show');
+        }
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             const values = Object.fromEntries(new FormData(form).entries());
-            const incorrect = Object.keys(answers).filter((key) => values[key] !== answers[key]);
+            const keys = page === 0 ? Object.keys(answers).slice(0, firstPageCount) : Object.keys(answers).slice(firstPageCount);
+            const incorrect = keys.filter((key) => values[key] !== answers[key]);
             if (incorrect.length) {
-                feedback.textContent = 'Please review the instructions and try again. All questions must be answered correctly before proceeding.';
+                attempts += 1;
+                const details = incorrect.map((key) => messages[key]).join(' ');
+                feedback.textContent = `Please review the following instructions: ${details} Warning: You have used ${attempts} of 3 allowed attempts.`;
                 feedback.classList.add('show');
+                return;
+            }
+            if (page === 0) {
+                page = 1;
+                render();
                 return;
             }
             feedback.textContent = 'All answers are correct. You may continue.';
             feedback.classList.add('show');
-            form.querySelector('button[type="submit"]').textContent = 'Continue';
-            form.querySelector('button[type="submit"]').onclick = () => showStage(nextStage);
+            submit.textContent = 'Continue';
+            submit.onclick = null;
+            submit.addEventListener('click', () => showStage(nextStage), { once: true });
         });
+        render();
     }
 
     function setupGame(stageId, submitId, selectionId, matrices, nextStage) {
@@ -170,12 +261,26 @@
         { a1: 'top_bottom', b1: 'left_right', p1: '8_14' },
         document.getElementById('agg-feedback'),
         'aggregated-game',
+        2,
+        {
+            a1: 'A chooses between Top and Bottom.',
+            b1: 'B chooses between Left and Right.',
+            p1: 'For Top and Right, the selected payoff is (8, 14) in the top right cell.',
+        },
     );
     answer(
         document.getElementById('decomposed-quiz'),
         { a2: 'top_top', b2: 'left_left', p2: '8_14', q2: '11_12', r2: 'a_9_5_b_13' },
         document.getElementById('dec-feedback'),
         'decomposed-game',
+        2,
+        {
+            a2: 'A chooses one row and the same choice applies to both tables.',
+            b2: 'B chooses one column and the same choice applies to both tables.',
+            p2: 'For Top and Right, the selected payoff in Table 1 is (8, 14).',
+            q2: 'For Top and Right, the selected payoff in Table 2 is (11, 12).',
+            r2: 'Task payoffs are the sums: A is 8+11=19 and B is 14+12=26.',
+        },
     );
 
     setupGame('aggregated-game', 'agg-submit', 'agg-selection', aggregatedPayoffs, 'decomposed-instructions');
@@ -183,16 +288,4 @@
 
     document.getElementById('restart-demo').addEventListener('click', () => window.location.reload());
 
-    document.querySelectorAll('.interactive-selector').forEach((cell) => {
-        cell.addEventListener('click', () => {
-            const action = cell.dataset.action;
-            const table = cell.closest('table');
-            table.querySelectorAll('.interactive-selector').forEach((item) => {
-                item.classList.toggle('is-selected', item.dataset.action === action);
-            });
-            table.querySelectorAll('td[data-row], td[data-col]').forEach((item) => {
-                item.classList.toggle('is-selected', item.dataset.row === action || item.dataset.col === action);
-            });
-        });
-    });
 })();

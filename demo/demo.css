@@ -543,6 +543,6 @@
 .experiment-mode .demo-shell{max-width:1140px;padding:0 15px 40px}
 .experiment-mode .demo-header{display:none}
 .experiment-mode .stage.active{border:0;border-radius:0;box-shadow:none;padding:20px 0 40px}
-.experiment-mode .stage.active>h2{display:none}
+.experiment-mode #aggregated-instructions>h2,.experiment-mode #decomposed-instructions>h2{display:none}
 .experiment-mode .instruction-flow-nav{border-top:1px solid #d0d7de;padding-top:16px}
 .experiment-mode .instruction-flow-nav button{min-width:90px}
