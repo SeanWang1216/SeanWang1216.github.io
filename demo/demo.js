@@ -31,6 +31,7 @@
     function showStage(id) {
         currentStage = id;
         stages.forEach((stage) => stage.classList.toggle('active', stage.id === id));
+        document.body.classList.toggle('experiment-mode', id !== 'welcome');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -39,10 +40,11 @@
         const steps = Array.from(stage.querySelectorAll('.instruction-step'));
         const outerNav = stage.querySelector('.flow-nav');
         let currentStep = 0;
+        outerNav.style.display = 'none';
         const nav = document.createElement('div');
         nav.className = 'flow-nav instruction-flow-nav';
         nav.innerHTML = '<button type="button" class="secondary">Back</button><button type="button">Next</button>';
-        outerNav.before(nav);
+        stage.querySelector('.instruction-progress').after(nav);
         const back = nav.querySelector('.secondary');
         const next = nav.querySelector('button:not(.secondary)');
 
@@ -53,19 +55,12 @@
                 progress.textContent = `Section ${currentStep + 1} of ${steps.length}`;
             }
             back.disabled = currentStep === 0;
-            nav.hidden = currentStep === steps.length - 1;
-            outerNav.hidden = currentStep !== steps.length - 1;
+            next.textContent = currentStep === steps.length - 1 ? 'Continue' : 'Next';
         }
 
         back.addEventListener('click', () => {
             if (currentStep > 0) {
                 currentStep -= 1;
-                render();
-            }
-        });
-        next.addEventListener('click', () => {
-            if (currentStep < steps.length - 1) {
-                currentStep += 1;
                 render();
             }
         });
@@ -79,7 +74,14 @@
                 }
             });
         }
-        outerNav.querySelector('[data-next]').addEventListener('click', () => showStage(nextStage));
+        next.addEventListener('click', () => {
+            if (currentStep < steps.length - 1) {
+                currentStep += 1;
+                render();
+            } else {
+                showStage(nextStage);
+            }
+        });
         render();
     }
 
