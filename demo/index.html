@@ -1,0 +1,1276 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Experimental Instructions & Game Demo | Yu-Hsiang Wang</title><meta name="description" content="Interactive demonstration of aggregated and decomposed games."><link rel="stylesheet" href="demo.css"></head><body><main class="demo-shell"><header class="demo-header"><h1>Experimental Instructions & Game Demo</h1><p>Strategic Complexity in Decomposed Games · Yu-Hsiang (Sean) Wang</p></header><section id="welcome" class="stage active demo-card"><div class="notice"><h2>Demonstration version</h2><p>This demonstration contains one Aggregated round and one Decomposed round. It is for learning and illustration only: there is no real payment, no data collection, and the other player is a clearly marked simulated opponent. Your role is fixed across both rounds.</p></div><p>You will first read the original Aggregated instructions, complete the comprehension quiz, make one decision, then read the original Decomposed instructions, complete its quiz, and make one decision.</p><button class="button" id="start-demo">Start demonstration</button></section><section id="aggregated-instructions" class="stage demo-card"><h2>Original Aggregated Instructions</h2><div style="max-width: 1000px; line-height: 1.5;">
+    <div class="instruction-progress">
+        <div class="instruction-progress-label" id="agg-instruction-progress-label">Section 1 of 12</div>
+        <div class="instruction-progress-bar">
+            <div class="instruction-progress-fill" id="agg-instruction-progress-fill" style="width: 8.333333333333334%;"></div>
+        </div>
+    </div>
+
+    
+        <div class="instruction-step" id="agg-section-roles">
+            <h4>Roles</h4>
+            <p>
+                You are randomly assigned to one of two roles: <strong class="player-a-term">A</strong> or <strong class="player-b-term">B</strong>.
+                Your role will remain fixed throughout the entire experiment.
+            </p>
+
+            <p>
+                In each task, you will be randomly matched with another participant who has the opposite role from you.
+                You and the participant you are matched with will each choose one of two options, and your earnings will depend on both players' choices.
+                You will <strong>not</strong> be told the other participant's choice or your earnings until the end of the experiment.
+            </p>
+        </div>
+    
+
+    <div class="instruction-step instruction-section-hidden" id="agg-section-tasks">
+        <h4>Task Overview</h4>
+        <p>
+            This part of the experiment consists of <strong>2</strong> tasks.<br>
+            
+                In each task, you and the participant you are matched with will see the <strong>same table</strong>.<br>
+                The table <strong>varies</strong> across tasks, but the format is the same.
+            
+        </p>
+        <p>
+            
+                Here is an example of what a table looks like:
+            
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="player-b-action">Left</th>
+                        <th class="player-b-action">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action">Top</th>
+                        <td><span class="payoff-pair">(<span class="player-a-payoff">12</span>, <span class="player-b-payoff">10</span>)</span></td>
+                        <td><span class="payoff-pair">(<span class="player-a-payoff">8</span>, <span class="player-b-payoff">14</span>)</span></td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action">Bottom</th>
+                        <td><span class="payoff-pair">(<span class="player-a-payoff">9</span>, <span class="player-b-payoff">11</span>)</span></td>
+                        <td><span class="payoff-pair">(<span class="player-a-payoff">7</span>, <span class="player-b-payoff">7</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+            <p>
+                The next section details the structure of the table.
+            </p>
+        
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="agg-section-table-1">
+        <h4>The Table</h4>
+        <p>
+            The <span class="player-a-action">row</span> and <span class="player-b-action">column</span> labels indicate the choices available to <span class="player-a-term">A</span> and <span class="player-b-term">B</span> respectively.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table table-anatomy table-anatomy-blink">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="blink-focus"><span class="player-b-action">Left</span></th>
+                        <th class="blink-focus"><span class="player-b-action">Right</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="blink-focus"><span class="player-a-action">Top</span></th>
+                        <td>(12, 10)</td>
+                        <td>(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="blink-focus"><span class="player-a-action">Bottom</span></th>
+                        <td>(9, 11)</td>
+                        <td>(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <span class="player-a-term">A</span> selects a <strong>row</strong> 
+            (<span class="player-a-action">Top</span> or <span class="player-a-action">Bottom</span>), 
+            and <span class="player-b-term">B</span> selects a <strong>column</strong> 
+            (<span class="player-b-action">Left</span> or <span class="player-b-action">Right</span>).
+        </p>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="agg-section-table-2">
+        <h4>The Table</h4>
+        <p>
+            The numbers in each cell are the <strong>payoffs</strong> for <span class="player-a-term">A</span> and <span class="player-b-term">B</span>, shown as <span class="payoff-pair">(<span class="player-a-term">A payoff</span>, <span class="player-b-term">B payoff</span>)</span>, corresponding to their choices.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table table-anatomy table-anatomy-blink">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th><span class="player-b-action">Left</span></th>
+                        <th><span class="player-b-action">Right</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><span class="player-a-action">Top</span></th>
+                        <td class="blink-focus">(12, 10)</td>
+                        <td class="blink-focus">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th><span class="player-a-action">Bottom</span></th>
+                        <td class="blink-focus">(9, 11)</td>
+                        <td class="blink-focus">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="agg-section-table-3-top-left">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Top</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Left</span>, the selected cell is the top left cell: <span class="payoff-pair">(<span class="player-a-payoff">12</span>, <span class="player-b-payoff">10</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action is-selected">Left</th>
+                        <th class="player-b-action">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action is-selected">Top</th>
+                        <td class="is-selected realized-outcome">(12, 10)</td>
+                        <td class="is-selected">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action">Bottom</th>
+                        <td class="is-selected">(9, 11)</td>
+                        <td>(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, <span class="player-a-term">A's</span> payoff is <span class="player-a-payoff">12</span>, and <span class="player-b-term">B's</span> payoff is <span class="player-b-payoff">10</span>.
+        </p>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="agg-section-table-3-top-right">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Top</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Right</span>, the selected cell is the top right cell: <span class="payoff-pair">(<span class="player-a-payoff">8</span>, <span class="player-b-payoff">14</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action">Left</th>
+                        <th class="player-b-action is-selected">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action is-selected">Top</th>
+                        <td class="is-selected">(12, 10)</td>
+                        <td class="is-selected realized-outcome">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action">Bottom</th>
+                        <td>(9, 11)</td>
+                        <td class="is-selected">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, <span class="player-a-term">A's</span> payoff is <span class="player-a-payoff">8</span>, and <span class="player-b-term">B's</span> payoff is <span class="player-b-payoff">14</span>.
+        </p>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="agg-section-table-3-bottom-left">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Bottom</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Left</span>, the selected cell is the bottom left cell: <span class="payoff-pair">(<span class="player-a-payoff">9</span>, <span class="player-b-payoff">11</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action is-selected">Left</th>
+                        <th class="player-b-action">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action">Top</th>
+                        <td class="is-selected">(12, 10)</td>
+                        <td>(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action is-selected">Bottom</th>
+                        <td class="is-selected realized-outcome">(9, 11)</td>
+                        <td class="is-selected">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, <span class="player-a-term">A's</span> payoff is <span class="player-a-payoff">9</span>, and <span class="player-b-term">B's</span> payoff is <span class="player-b-payoff">11</span>.
+        </p>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="agg-section-table-3-bottom-right">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Bottom</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Right</span>, the selected cell is the bottom right cell: <span class="payoff-pair">(<span class="player-a-payoff">7</span>, <span class="player-b-payoff">7</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action">Left</th>
+                        <th class="player-b-action is-selected">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action">Top</th>
+                        <td>(12, 10)</td>
+                        <td class="is-selected">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action is-selected">Bottom</th>
+                        <td class="is-selected">(9, 11)</td>
+                        <td class="is-selected realized-outcome">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, <span class="player-a-term">A's</span> payoff is <span class="player-a-payoff">7</span>, and <span class="player-b-term">B's</span> payoff is <span class="player-b-payoff">7</span>.
+        </p>
+    </div>
+
+    <div id="agg-section-action-selection" class="instruction-step instruction-section-hidden">
+        <h4>How <span class="player-a-term">A</span> Selects a Row</h4>
+        <p>
+            In each task, you and the participant you are matched with will see the <strong>same table</strong> and make your choices simultaneously.
+            You will <strong>not</strong> be informed of the other participant's choice at any point in the experiment.
+        </p>
+        <ul>
+            <li>If you are <span class="player-a-term">A</span>, you choose a <strong>row</strong> by clicking <span class="player-a-action">Top</span> or <span class="player-a-action">Bottom</span>.</li>
+        </ul>
+
+        <div id="agg-stage-player-a" class="interactive-stage">
+        <div class="example-box">
+            <div class="example-controls">
+                <h5 class="example-step" id="agg-decision-example-step">
+                    Try it! Click <span class="player-a-action">Top</span> or <span class="player-a-action">Bottom</span> to choose for <span class="player-a-term">A</span>.
+                </h5>
+            </div>
+
+            <div class="preview-columns">
+                <div class="preview-card">
+                    <h5><span class="player-a-term">A's</span> screen</h5>
+                    <table class="table table-bordered preview-table interactive-preview" id="agg-player-a-example">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="player-b-action">Left</th>
+                                <th class="player-b-action">Right</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-row="Top">
+                                <th class="interactive-selector player-a-click-cell player-a-action" data-action="Top" data-row="Top">Top</th>
+                                <td data-row="Top" data-col="Left">(12, 10)</td>
+                                <td data-row="Top" data-col="Right">(8, 14)</td>
+                            </tr>
+                            <tr data-row="Bottom">
+                                <th class="interactive-selector player-a-click-cell player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="example-results" id="agg-player-a-example-results">
+                        No choice selected yet.
+                    </div>
+                </div>
+
+                <div class="preview-card choice-screen-muted player-b-status-card">
+                    <h5><span class="player-b-term">B's</span> screen</h5>
+                    <table class="table table-bordered preview-table interactive-preview">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="player-b-action">Left</th>
+                                <th class="player-b-action">Right</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-row="Top">
+                                <th class="player-a-action">Top</th>
+                                <td data-row="Top" data-col="Left">(12, 10)</td>
+                                <td data-row="Top" data-col="Right">(8, 14)</td>
+                            </tr>
+                            <tr data-row="Bottom">
+                                <th class="player-a-action">Bottom</th>
+                                <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="example-results">
+                        If you are A, you will not see B's screen in the real task.
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="agg-section-b-action-selection" class="instruction-step instruction-section-hidden">
+        <h4>How <span class="player-b-term">B</span> Selects a Column</h4>
+        <p>
+            In each task, you and the participant you are matched with will see the <strong>same table</strong> and make your choices simultaneously.
+            You will <strong>not</strong> be informed of the other participant's choice at any point in the experiment.
+        </p>
+        <ul>
+            <li>If you are <span class="player-b-term">B</span>, you choose a <strong>column</strong> by clicking <span class="player-b-action">Left</span> or <span class="player-b-action">Right</span>.</li>
+        </ul>
+
+        <div class="example-box">
+            <div class="example-controls">
+                <h5 class="example-step" id="agg-player-b-choice-example-step">
+                    Try it! Click <span class="player-b-action">Left</span> or <span class="player-b-action">Right</span> to choose for <span class="player-b-term">B</span>.
+                </h5>
+            </div>
+
+            <div class="preview-columns">
+                <div class="preview-card choice-screen-muted player-a-status-card">
+                    <h5><span class="player-a-term">A's</span> screen</h5>
+                    <table class="table table-bordered preview-table interactive-preview">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="player-b-action">Left</th>
+                                <th class="player-b-action">Right</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-row="Top">
+                                <th class="player-a-action">Top</th>
+                                <td data-row="Top" data-col="Left">(12, 10)</td>
+                                <td data-row="Top" data-col="Right">(8, 14)</td>
+                            </tr>
+                            <tr data-row="Bottom">
+                                <th class="player-a-action">Bottom</th>
+                                <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="example-results">
+                        If you are B, you will not see A's screen in the real task.
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <h5><span class="player-b-term">B's</span> screen</h5>
+                    <table class="table table-bordered preview-table interactive-preview" id="agg-player-b-example">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="interactive-selector player-b-click-cell player-b-action" data-action="Left" data-col="Left">Left</th>
+                                <th class="interactive-selector player-b-click-cell player-b-action" data-action="Right" data-col="Right">Right</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-row="Top">
+                                <th class="player-a-action">Top</th>
+                                <td data-row="Top" data-col="Left">(12, 10)</td>
+                                <td data-row="Top" data-col="Right">(8, 14)</td>
+                            </tr>
+                            <tr data-row="Bottom">
+                                <th class="player-a-action">Bottom</th>
+                                <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="example-results" id="agg-player-b-example-results">
+                        No choice selected yet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="agg-section-payoff-calculation" class="instruction-step instruction-section-hidden">
+        <h4>How Task Payoffs Are Calculated</h4>
+        <p>
+            Every cell in the table shows a payoff pair in the form
+            <span class="payoff-pair">(<span class="player-a-term">A payoff</span>, <span class="player-b-term">B payoff</span>)</span>.
+        </p>
+        <p>
+            Your task payoff is the payoff from the table. (If you are unfamiliar with how the payoff is determined in each table, refer to section 4 through 8.)
+        </p>
+        <p>
+            The example below uses the row and column you selected in the previous sections to show how task payoffs are determined.
+        </p>
+
+        <div class="example-box">
+            
+            <div class="example-controls">
+                <h5 class="example-step" id="agg-combined-example-step">
+                    Review the resulting task payoffs. You can click a different row or column to try another choice.
+                </h5>
+            </div>
+
+            <div class="preview-columns">
+                <div class="preview-card">
+                    <h5><span class="player-a-term">A's</span> screen</h5>
+                    <table class="table table-bordered preview-table interactive-preview" id="agg-combined-example-a">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="player-b-action" data-col="Left">Left</th>
+                                <th class="player-b-action" data-col="Right">Right</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-row="Top">
+                                <th class="interactive-selector combined-row player-a-action" data-action="Top" data-row="Top">Top</th>
+                                <td data-row="Top" data-col="Left" data-a="12" data-b="10"><span class="payoff-pair">(<span class="player-a-payoff">12</span>, <span class="player-b-payoff">10</span>)</span></td>
+                                <td data-row="Top" data-col="Right" data-a="8" data-b="14"><span class="payoff-pair">(<span class="player-a-payoff">8</span>, <span class="player-b-payoff">14</span>)</span></td>
+                            </tr>
+                            <tr data-row="Bottom">
+                                <th class="interactive-selector combined-row player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                <td data-row="Bottom" data-col="Left" data-a="9" data-b="11"><span class="payoff-pair">(<span class="player-a-payoff">9</span>, <span class="player-b-payoff">11</span>)</span></td>
+                                <td data-row="Bottom" data-col="Right" data-a="7" data-b="7"><span class="payoff-pair">(<span class="player-a-payoff">7</span>, <span class="player-b-payoff">7</span>)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="preview-card">
+                    <h5><span class="player-b-term">B's</span> screen</h5>
+                    <table class="table table-bordered preview-table interactive-preview" id="agg-combined-example-b">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="interactive-selector combined-column player-b-action" data-action="Left" data-col="Left">Left</th>
+                                <th class="interactive-selector combined-column player-b-action" data-action="Right" data-col="Right">Right</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-row="Top">
+                                <th class="player-a-action" data-row="Top">Top</th>
+                                <td data-row="Top" data-col="Left" data-a="12" data-b="10"><span class="payoff-pair">(<span class="player-a-payoff">12</span>, <span class="player-b-payoff">10</span>)</span></td>
+                                <td data-row="Top" data-col="Right" data-a="8" data-b="14"><span class="payoff-pair">(<span class="player-a-payoff">8</span>, <span class="player-b-payoff">14</span>)</span></td>
+                            </tr>
+                            <tr data-row="Bottom">
+                                <th class="player-a-action" data-row="Bottom">Bottom</th>
+                                <td data-row="Bottom" data-col="Left" data-a="9" data-b="11"><span class="payoff-pair">(<span class="player-a-payoff">9</span>, <span class="player-b-payoff">11</span>)</span></td>
+                                <td data-row="Bottom" data-col="Right" data-a="7" data-b="7"><span class="payoff-pair">(<span class="player-a-payoff">7</span>, <span class="player-b-payoff">7</span>)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="example-results" id="agg-combined-example-results">
+                No choice pair selected yet.
+            </div>
+        </div>
+        <strong>Note: This example is for demonstration purposes only. In the actual task, you will not be informed of the other participant's choice.</strong>
+    </div>
+
+    <div id="agg-section-summary" class="instruction-step instruction-section-hidden">
+        <h4>Summary</h4>
+        <ul>
+            <li>Each task in this part shows <strong>one</strong> table.</li>
+            <li><span class="player-a-term">A</span> chooses a row, and <span class="player-b-term">B</span> chooses a column.</li>
+            <li>Each cell shows <span class="payoff-pair">(<span class="player-a-term">A payoff</span>, <span class="player-b-term">B payoff</span>)</span> for A and B's choices.</li>
+            <li>The table <strong>varies</strong> across tasks.</li>
+            <li>You will <strong>not</strong> be informed of the other participant's choice after each task.</li>
+        </ul>
+        <p>
+            The quiz questions in the next part will test your understanding of these instructions.
+            You <strong>cannot</strong> proceed to the experiment without answering all quiz questions correctly.
+        </p>
+    </div>
+</div>
+
+<div class="flow-nav"><button class="secondary" data-back="welcome">Back</button><button data-next="agg-quiz">Continue</button></div></section><section id="agg-quiz" class="stage demo-card"><h2>Comprehension Quiz</h2><p>Please answer the following questions. You must answer all questions correctly before proceeding.</p><form class="quiz" id="aggregated-quiz"><fieldset><legend>1. What are A's two action options?</legend><label><input type="radio" name="a1" value="top_bottom"> Top and Bottom</label><label><input type="radio" name="a1" value="left_right"> Left and Right</label></fieldset><fieldset><legend>2. What are B's two action options?</legend><label><input type="radio" name="b1" value="top_bottom"> Top and Bottom</label><label><input type="radio" name="b1" value="left_right"> Left and Right</label></fieldset><fieldset><legend>3. If A chooses Top and B chooses Right, which payoff pair is selected?</legend><label><input type="radio" name="p1" value="12_10"> (12, 10)</label><label><input type="radio" name="p1" value="8_14"> (8, 14)</label><label><input type="radio" name="p1" value="7_7"> (7, 7)</label></fieldset><div class="feedback" id="agg-feedback"></div><button type="submit">Submit answers</button></form></section><section id="aggregated-game" class="stage demo-card"><h2>Aggregated Decision · 1 round</h2><p id="agg-role"></p><p class="game-help">The simulated opponent always chooses <strong id="agg-opponent-label"></strong>. Select your action in the matrix. The payoff pair is shown as (A, B).</p><div class="game-columns"><div class="game-panel"><h3>Aggregated payoff matrix</h3><table class="game-matrix "><thead><tr><th></th><th class="choice-col" data-action="Left">Left</th><th class="choice-col" data-action="Right">Right</th></tr></thead><tbody><tr><th class="choice-row" data-action="Top">Top</th><td data-row="Top" data-col="Left">96, 60</td><td data-row="Top" data-col="Right">72, 120</td></tr><tr><th class="choice-row" data-action="Bottom">Bottom</th><td data-row="Bottom" data-col="Left">60, 84</td><td data-row="Bottom" data-col="Right">84, 96</td></tr></tbody></table></div><div class="game-panel"><h3>Simulated opponent</h3><p>This opponent follows the same fixed rule in both representations and is not another visitor.</p><p id="agg-simulated-choice"></p></div></div><p id="agg-selection">No action selected.</p><button class="button" id="agg-submit">Submit choice</button></section><section id="decomposed-instructions" class="stage demo-card"><h2>Original Decomposed Instructions</h2><div style="max-width: 1000px; line-height: 1.5;">
+    <div class="instruction-progress">
+        <div class="instruction-progress-label" id="dec-instruction-progress-label">Section 1 of 11</div>
+        <div class="instruction-progress-bar">
+            <div class="instruction-progress-fill" id="dec-instruction-progress-fill" style="width: 9.090909090909092%;"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="instruction-step instruction-section-hidden" id="dec-section-tasks">
+        <h4>Task Overview</h4>
+        <p>
+            This part of the experiment consists of <strong>12</strong> tasks.  <br>
+            
+                The task in this part is similar to the tasks in the first part of the experiment,
+                but you and the participant you are matched with will see the same <strong>2 tables</strong> in each task.<br>
+            
+            The numbers in the tables <strong>vary</strong> across tasks, but the format remains the same.
+        </p>
+        <p>
+            
+                The structure of each table is the same as in the first part of the experiment:
+            
+        </p>
+
+        <div class="screen-example">
+            <div class="matrix-block">
+                <h6>Table 1</h6>
+                <table class="table table-bordered preview-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="player-b-action">Left</th>
+                            <th class="player-b-action">Right</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="player-a-action">Top</th>
+                            <td>(12, 10)</td>
+                            <td>(8, 14)</td>
+                        </tr>
+                        <tr>
+                            <th class="player-a-action">Bottom</th>
+                            <td>(9, 11)</td>
+                            <td>(7, 7)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="matrix-block">
+                <h6>Table 2</h6>
+                <table class="table table-bordered preview-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="player-b-action">Left</th>
+                            <th class="player-b-action">Right</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="player-a-action">Top</th>
+                            <td>(10, 13)</td>
+                            <td>(11, 12)</td>
+                        </tr>
+                        <tr>
+                            <th class="player-a-action">Bottom</th>
+                            <td>(6, 9)</td>
+                            <td>(9, 8)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+            <div class="skip-table-sections">
+                <p>
+                    If you already understand the table structure from the first part, you may click "Skip Table sections" to skip the next Table sections.<br>
+                    If not, please click "Next" to continue learning about the table structure in detail before starting the tasks.
+                </p>
+                <button type="button" class="btn btn-outline-primary" id="dec-skip-table-sections-button">Skip Table sections</button>
+            </div>
+        
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="dec-section-table-1">
+        <h4>The Table</h4>
+        <p>
+            The <span class="player-a-action">row</span> and <span class="player-b-action">column</span> labels indicate the choices available to <span class="player-a-term">A</span> and <span class="player-b-term">B</span> respectively.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table table-anatomy table-anatomy-blink">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="blink-focus"><span class="player-b-action">Left</span></th>
+                        <th class="blink-focus"><span class="player-b-action">Right</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="blink-focus"><span class="player-a-action">Top</span></th>
+                        <td>(12, 10)</td>
+                        <td>(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="blink-focus"><span class="player-a-action">Bottom</span></th>
+                        <td>(9, 11)</td>
+                        <td>(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p>
+            <span class="player-a-term">A</span> selects a <strong>row</strong> 
+            (<span class="player-a-action">Top</span> or <span class="player-a-action">Bottom</span>), 
+            and <span class="player-b-term">B</span> selects a <strong>column</strong> 
+            (<span class="player-b-action">Left</span> or <span class="player-b-action">Right</span>).
+        </p>
+
+    </div>
+
+
+    <div class="instruction-step instruction-section-hidden" id="dec-section-table-2">
+        <h4>The Table</h4>
+        <p>
+            The numbers in each cell are the <strong>payoffs</strong> for <span class="player-a-term">A</span> and <span class="player-b-term">B</span>, shown as <span class="payoff-pair">(<span class="player-a-term">A payoff</span>, <span class="player-b-term">B payoff</span>)</span>, corresponding to each possible pair of choices.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table table-anatomy table-anatomy-blink">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th><span class="player-b-action">Left</span></th>
+                        <th><span class="player-b-action">Right</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><span class="player-a-action">Top</span></th>
+                        <td class="blink-focus">(12, 10)</td>
+                        <td class="blink-focus">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th><span class="player-a-action">Bottom</span></th>
+                        <td class="blink-focus">(9, 11)</td>
+                        <td class="blink-focus">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="instruction-step instruction-section-hidden" id="dec-section-table-3-top-left">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Top</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Left</span>, the selected cell is the top left cell: <span class="payoff-pair">(<span class="player-a-payoff">12</span>, <span class="player-b-payoff">10</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action is-selected">Left</th>
+                        <th class="player-b-action">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action is-selected">Top</th>
+                        <td class="is-selected realized-outcome">(12, 10)</td>
+                        <td class="is-selected">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action">Bottom</th>
+                        <td class="is-selected">(9, 11)</td>
+                        <td>(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, 
+            <ul>
+                <li><span class="player-a-term">A's</span> payoff from this table would be <span class="player-a-payoff">12</span>;</li>
+                <li><span class="player-b-term">B's</span> payoff from this table would be <span class="player-b-payoff">10</span>.</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="dec-section-table-3-top-right">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Top</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Right</span>, the selected cell is the top right cell: <span class="payoff-pair">(<span class="player-a-payoff">8</span>, <span class="player-b-payoff">14</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action">Left</th>
+                        <th class="player-b-action is-selected">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action is-selected">Top</th>
+                        <td class="is-selected">(12, 10)</td>
+                        <td class="is-selected realized-outcome">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action">Bottom</th>
+                        <td>(9, 11)</td>
+                        <td class="is-selected">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, 
+            <ul>
+                <li><span class="player-a-term">A's</span> payoff from this table would be <span class="player-a-payoff">8</span>;</li>
+                <li><span class="player-b-term">B's</span> payoff from this table would be <span class="player-b-payoff">14</span>.</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="dec-section-table-3-bottom-left">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Bottom</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Left</span>, the selected cell is the bottom left cell: <span class="payoff-pair">(<span class="player-a-payoff">9</span>, <span class="player-b-payoff">11</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action is-selected">Left</th>
+                        <th class="player-b-action">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action">Top</th>
+                        <td class="is-selected">(12, 10)</td>
+                        <td>(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action is-selected">Bottom</th>
+                        <td class="is-selected realized-outcome">(9, 11)</td>
+                        <td class="is-selected">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, 
+            <ul>
+                <li><span class="player-a-term">A's</span> payoff from this table would be <span class="player-a-payoff">9</span>;</li>
+                <li><span class="player-b-term">B's</span> payoff from this table would be <span class="player-b-payoff">11</span>.</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="instruction-step instruction-section-hidden" id="dec-section-table-3-bottom-right">
+        <h4>The Table</h4>
+        <p>
+            If <span class="player-a-term">A</span> chooses <span class="player-a-action">Bottom</span> and <span class="player-b-term">B</span> chooses <span class="player-b-action">Right</span>, the selected cell is the bottom right cell: <span class="payoff-pair">(<span class="player-a-payoff">7</span>, <span class="player-b-payoff">7</span>)</span>.
+        </p>
+
+        <div class="screen-example">
+            <table class="table table-bordered preview-table interactive-preview table-anatomy">
+                <thead>
+                    <tr>
+                        <th class="table-corner"></th>
+                        <th class="player-b-action">Left</th>
+                        <th class="player-b-action is-selected">Right</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="player-a-action">Top</th>
+                        <td>(12, 10)</td>
+                        <td class="is-selected">(8, 14)</td>
+                    </tr>
+                    <tr>
+                        <th class="player-a-action is-selected">Bottom</th>
+                        <td class="is-selected">(9, 11)</td>
+                        <td class="is-selected realized-outcome">(7, 7)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            Therefore, 
+            <ul>
+                <li><span class="player-a-term">A's</span> payoff from this table would be <span class="player-a-payoff">7</span>;</li>
+                <li><span class="player-b-term">B's</span> payoff from this table would be <span class="player-b-payoff">7</span>.</li>
+            </ul>
+        </p>
+    </div>
+
+    <div id="dec-section-action-selection" class="instruction-step instruction-section-hidden">
+        <h4>How <span class="player-a-term">A</span> Selects a Row</h4>
+        <p>
+            In each task, you and the participant you are matched with will see the <strong>same 2 tables</strong> and make your choices simultaneously.<br>
+            You will <strong>not</strong> be informed of the other participant's choice until after the experiment.
+        </p>
+        <ul>
+            <li>If you are <span class="player-a-term">A</span>, you choose a <strong>row</strong> by clicking <span class="player-a-action">Top</span> or <span class="player-a-action">Bottom</span> in either table.</li>
+            <li>Your choice <strong>applies to both tables</strong>. Therefore, you <strong>cannot</strong> choose <span class="player-a-action">Top</span> in one table and <span class="player-a-action">Bottom</span> in the other.</li>
+        </ul>
+
+        <div id="dec-stage-player-a" class="interactive-stage">
+        <div class="example-box">
+            <div class="example-controls">
+                <h5 class="example-step" id="dec-player-a-example-step">
+                    Try it! Click <span class="player-a-action">Top</span> or <span class="player-a-action">Bottom</span> to choose for <span class="player-a-term">A</span>.
+                </h5>
+            </div>
+
+            <div class="preview-columns">
+                <div class="preview-card">
+                    <h5><span class="player-a-term">A's</span> screen</h5>
+                    <div class="component-stack">
+                        <div>
+                            <h6>Table 1</h6>
+                            <table class="table table-bordered preview-table interactive-preview decision-player-a" data-component="1">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="player-b-action">Left</th>
+                                        <th class="player-b-action">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="interactive-selector intro-a-row-click player-a-action" data-action="Top" data-row="Top">Top</th>
+                                        <td data-row="Top" data-col="Left">(12, 10)</td>
+                                        <td data-row="Top" data-col="Right">(8, 14)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="interactive-selector intro-a-row-click player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                        <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h6>Table 2</h6>
+                            <table class="table table-bordered preview-table interactive-preview decision-player-a" data-component="2">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="player-b-action">Left</th>
+                                        <th class="player-b-action">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="interactive-selector intro-a-row-click player-a-action" data-action="Top" data-row="Top">Top</th>
+                                        <td data-row="Top" data-col="Left">(10, 13)</td>
+                                        <td data-row="Top" data-col="Right">(11, 12)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="interactive-selector intro-a-row-click player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(6, 9)</td>
+                                        <td data-row="Bottom" data-col="Right">(9, 8)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="example-results" id="dec-player-a-example-results">
+                        No choice selected yet.
+                    </div>
+                </div>
+
+                <div class="preview-card choice-screen-muted player-b-status-card">
+                    <h5><span class="player-b-term">B's</span> screen</h5>
+                    <div class="component-stack">
+                        <div>
+                            <h6>Table 1</h6>
+                            <table class="table table-bordered preview-table interactive-preview" data-component="1">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="player-b-action" data-action="Left" data-col="Left">Left</th>
+                                        <th class="player-b-action" data-action="Right" data-col="Right">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="player-a-action">Top</th>
+                                        <td data-row="Top" data-col="Left">(12, 10)</td>
+                                        <td data-row="Top" data-col="Right">(8, 14)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="player-a-action">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                        <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h6>Table 2</h6>
+                            <table class="table table-bordered preview-table interactive-preview" data-component="2">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="player-b-action" data-action="Left" data-col="Left">Left</th>
+                                        <th class="player-b-action" data-action="Right" data-col="Right">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="player-a-action">Top</th>
+                                        <td data-row="Top" data-col="Left">(10, 13)</td>
+                                        <td data-row="Top" data-col="Right">(11, 12)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="player-a-action">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(6, 9)</td>
+                                        <td data-row="Bottom" data-col="Right">(9, 8)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="example-results" id="dec-player-b-example-results">
+                        If you are A, you will not see B's screen in the real task.
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="dec-section-b-action-selection" class="instruction-step instruction-section-hidden">
+        <h4>How <span class="player-b-term">B</span> Selects a Column</h4>
+        <p>
+            In each task, you and the participant you are matched with will see the <strong>same 2 tables</strong> and make your choices simultaneously.<br>
+            You will <strong>not</strong> be informed of the other participant's choice at any point in the experiment.
+        </p>
+        <ul>
+            <li>If you are <span class="player-b-term">B</span>, you choose a <strong>column</strong> by clicking <span class="player-b-action">Left</span> or <span class="player-b-action">Right</span> in either table.</li>
+            <li>Your choice <strong>applies to both tables</strong>. Therefore, you cannot choose <span class="player-b-action">Left</span> in one table and <span class="player-b-action">Right</span> in the other.</li>
+        </ul>
+
+        <div class="example-box">
+            <div class="example-controls">
+                <h5 class="example-step" id="dec-player-b-choice-example-step">
+                    Try it! Click <span class="player-b-action">Left</span> or <span class="player-b-action">Right</span> to choose for <span class="player-b-term">B</span>.
+                </h5>
+            </div>
+
+            <div class="preview-columns">
+                <div class="preview-card choice-screen-muted player-a-status-card">
+                    <h5><span class="player-a-term">A's</span> screen</h5>
+                    <div class="component-stack">
+                        <div>
+                            <h6>Table 1</h6>
+                            <table class="table table-bordered preview-table interactive-preview">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="player-b-action">Left</th>
+                                        <th class="player-b-action">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="player-a-action" data-action="Top" data-row="Top">Top</th>
+                                        <td data-row="Top" data-col="Left">(12, 10)</td>
+                                        <td data-row="Top" data-col="Right">(8, 14)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                        <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h6>Table 2</h6>
+                            <table class="table table-bordered preview-table interactive-preview">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="player-b-action">Left</th>
+                                        <th class="player-b-action">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="player-a-action" data-action="Top" data-row="Top">Top</th>
+                                        <td data-row="Top" data-col="Left">(10, 13)</td>
+                                        <td data-row="Top" data-col="Right">(11, 12)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(6, 9)</td>
+                                        <td data-row="Bottom" data-col="Right">(9, 8)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="example-results">
+                        If you are B, you will not see A's screen in the real task.
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <h5><span class="player-b-term">B's</span> screen</h5>
+                    <div class="component-stack">
+                        <div>
+                            <h6>Table 1</h6>
+                            <table class="table table-bordered preview-table interactive-preview decision-player-b" data-component="1">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="interactive-selector intro-b-column-click player-b-action" data-action="Left" data-col="Left">Left</th>
+                                        <th class="interactive-selector intro-b-column-click player-b-action" data-action="Right" data-col="Right">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="player-a-action">Top</th>
+                                        <td data-row="Top" data-col="Left">(12, 10)</td>
+                                        <td data-row="Top" data-col="Right">(8, 14)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="player-a-action">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(9, 11)</td>
+                                        <td data-row="Bottom" data-col="Right">(7, 7)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h6>Table 2</h6>
+                            <table class="table table-bordered preview-table interactive-preview decision-player-b" data-component="2">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="interactive-selector intro-b-column-click player-b-action" data-action="Left" data-col="Left">Left</th>
+                                        <th class="interactive-selector intro-b-column-click player-b-action" data-action="Right" data-col="Right">Right</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row="Top">
+                                        <th class="player-a-action">Top</th>
+                                        <td data-row="Top" data-col="Left">(10, 13)</td>
+                                        <td data-row="Top" data-col="Right">(11, 12)</td>
+                                    </tr>
+                                    <tr data-row="Bottom">
+                                        <th class="player-a-action">Bottom</th>
+                                        <td data-row="Bottom" data-col="Left">(6, 9)</td>
+                                        <td data-row="Bottom" data-col="Right">(9, 8)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="example-results" id="dec-player-b-choice-example-results">
+                        No choice selected yet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dec-section-payoff-calculation" class="instruction-step instruction-section-hidden">
+        <h4>How Task Payoffs Are Calculated</h4>
+        <p>
+            Every cell in the table shows a payoff pair in the form
+            <span class="payoff-pair">(<span class="player-a-term">A payoff</span>, <span class="player-b-term">B payoff</span>)</span>.
+        </p>
+        <h5>
+            Your task payoff is the <strong>sum</strong> of the payoffs from the two tables.
+            <span style="font-size: 0.85em; font-weight: normal;">
+                (If you are unfamiliar with how the payoff is determined in each table, please review section 4 through 8.)</p>
+            </span>
+        </h5>
+        <p>
+            The example below uses the row and column you selected in the previous sections to show how the task payoffs are determined.
+        </p>
+
+        <div class="example-box">
+
+            <div class="example-controls">
+                <h5 class="example-step" id="dec-combined-example-step">
+                    Review the resulting task payoffs. You can click a different row or column to try another choice.
+                </h5>
+            </div>
+
+            <div class="preview-columns">
+                <div class="preview-card">
+                    <h5><span class="player-a-term">A's</span> screen</h5>
+
+                    <div class="matrix-block">
+                        <h6>Table 1</h6>
+                        <table class="table table-bordered preview-table interactive-preview" id="dec-combined-example-a-1">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="player-b-action" data-col="Left">Left</th>
+                                    <th class="player-b-action" data-col="Right">Right</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-row="Top">
+                                    <th class="interactive-selector combined-row player-a-action" data-action="Top" data-row="Top">Top</th>
+                                    <td data-row="Top" data-col="Left" data-a="12" data-b="10">(12, 10)</td>
+                                    <td data-row="Top" data-col="Right" data-a="8" data-b="14">(8, 14)</td>
+                                </tr>
+                                <tr data-row="Bottom">
+                                    <th class="interactive-selector combined-row player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                    <td data-row="Bottom" data-col="Left" data-a="9" data-b="11">(9, 11)</td>
+                                    <td data-row="Bottom" data-col="Right" data-a="7" data-b="7">(7, 7)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="matrix-block">
+                        <h6>Table 2</h6>
+                        <table class="table table-bordered preview-table interactive-preview" id="dec-combined-example-a-2">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="player-b-action" data-col="Left">Left</th>
+                                    <th class="player-b-action" data-col="Right">Right</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-row="Top">
+                                    <th class="interactive-selector combined-row player-a-action" data-action="Top" data-row="Top">Top</th>
+                                    <td data-row="Top" data-col="Left" data-a="10" data-b="13">(10, 13)</td>
+                                    <td data-row="Top" data-col="Right" data-a="11" data-b="12">(11, 12)</td>
+                                </tr>
+                                <tr data-row="Bottom">
+                                    <th class="interactive-selector combined-row player-a-action" data-action="Bottom" data-row="Bottom">Bottom</th>
+                                    <td data-row="Bottom" data-col="Left" data-a="6" data-b="9">(6, 9)</td>
+                                    <td data-row="Bottom" data-col="Right" data-a="9" data-b="8">(9, 8)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <h5><span class="player-b-term">B's</span> screen</h5>
+
+                    <div class="matrix-block">
+                        <h6>Table 1</h6>
+                        <table class="table table-bordered preview-table interactive-preview" id="dec-combined-example-b-1">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="interactive-selector combined-column player-b-action" data-action="Left" data-col="Left">Left</th>
+                                    <th class="interactive-selector combined-column player-b-action" data-action="Right" data-col="Right">Right</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-row="Top">
+                                    <th class="player-a-action" data-row="Top">Top</th>
+                                    <td data-row="Top" data-col="Left" data-a="12" data-b="10">(12, 10)</td>
+                                    <td data-row="Top" data-col="Right" data-a="8" data-b="14">(8, 14)</td>
+                                </tr>
+                                <tr data-row="Bottom">
+                                    <th class="player-a-action" data-row="Bottom">Bottom</th>
+                                    <td data-row="Bottom" data-col="Left" data-a="9" data-b="11">(9, 11)</td>
+                                    <td data-row="Bottom" data-col="Right" data-a="7" data-b="7">(7, 7)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="matrix-block">
+                        <h6>Table 2</h6>
+                        <table class="table table-bordered preview-table interactive-preview" id="dec-combined-example-b-2">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="interactive-selector combined-column player-b-action" data-action="Left" data-col="Left">Left</th>
+                                    <th class="interactive-selector combined-column player-b-action" data-action="Right" data-col="Right">Right</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-row="Top">
+                                    <th class="player-a-action" data-row="Top">Top</th>
+                                    <td data-row="Top" data-col="Left" data-a="10" data-b="13">(10, 13)</td>
+                                    <td data-row="Top" data-col="Right" data-a="11" data-b="12">(11, 12)</td>
+                                </tr>
+                                <tr data-row="Bottom">
+                                    <th class="player-a-action" data-row="Bottom">Bottom</th>
+                                    <td data-row="Bottom" data-col="Left" data-a="6" data-b="9">(6, 9)</td>
+                                    <td data-row="Bottom" data-col="Right" data-a="9" data-b="8">(9, 8)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-results" id="dec-combined-example-results">
+                No choice selected yet.
+            </div>
+        </div>
+        <strong>Note: This example is for demonstration purposes only. In the actual task, you will not be informed of the other participant's choice.</strong>
+    </div>
+
+    <div id="dec-section-summary" class="instruction-step instruction-section-hidden">
+        <h4>Summary</h4>
+        <ul>
+            <li>Each task in this part shows <strong>two</strong> tables.</li>
+            <li><span class="player-a-term">A</span> chooses a row, and <span class="player-b-term">B</span> chooses a column, and that <strong>choice applies to both tables</strong>.</li>
+            <li>Each cell shows <span class="payoff-pair">(<span class="player-a-term">A payoff</span>, <span class="player-b-term">B payoff</span>)</span> for A and B's choices.</li>
+            <li>Your task payoff is the <strong>sum</strong> of the payoff from the two tables.</li>
+            <li>The <strong>tables vary</strong> across tasks.</li>
+            <li>You will <strong>not</strong> be informed of the other participant's choice.</li>
+        </ul>
+        <p>
+            The quiz questions in the next part will test your understanding of these instructions.
+            You <strong>cannot</strong> proceed to the experiment without answering all quiz questions correctly.
+        </p>
+    </div>
+</div>
+
+<div class="flow-nav"><button class="secondary" data-back="aggregated-game">Back</button><button data-next="dec-quiz">Continue</button></div></section><section id="dec-quiz" class="stage demo-card"><h2>Comprehension Quiz</h2><p>Please answer the following questions. You must answer all questions correctly before proceeding.</p><form class="quiz" id="decomposed-quiz"><fieldset><legend>1. Which is a possible choice for A?</legend><label><input type="radio" name="a2" value="top_top"> Top in table 1 and Top in table 2</label><label><input type="radio" name="a2" value="top_bottom"> Top in table 1 and Bottom in table 2</label><label><input type="radio" name="a2" value="left_left"> Left in table 1 and Left in table 2</label></fieldset><fieldset><legend>2. Which is a possible choice for B?</legend><label><input type="radio" name="b2" value="top_top"> Top in table 1 and Top in table 2</label><label><input type="radio" name="b2" value="left_right"> Left in table 1 and Right in table 2</label><label><input type="radio" name="b2" value="left_left"> Left in table 1 and Left in table 2</label></fieldset><fieldset><legend>3. Which payoff pair is selected in Table 1 when A chooses Top and B chooses Right?</legend><label><input type="radio" name="p2" value="8_14"> (8, 14)</label><label><input type="radio" name="p2" value="12_10"> (12, 10)</label><label><input type="radio" name="p2" value="7_7"> (7, 7)</label></fieldset><fieldset><legend>4. Which payoff pair is selected in Table 2?</legend><label><input type="radio" name="q2" value="10_13"> (10, 13)</label><label><input type="radio" name="q2" value="11_12"> (11, 12)</label><label><input type="radio" name="q2" value="9_8"> (9, 8)</label></fieldset><fieldset><legend>5. What is the task payoff?</legend><label><input type="radio" name="r2" value="a_8_b_14"> A: 8, B: 14</label><label><input type="radio" name="r2" value="a_11_b_12"> A: 11, B: 12</label><label><input type="radio" name="r2" value="a_9_5_b_13"> A: 19, B: 26</label></fieldset><div class="feedback" id="dec-feedback"></div><button type="submit">Submit answers</button></form></section><section id="decomposed-game" class="stage demo-card"><h2>Decomposed Decision · 1 round</h2><p id="dec-role"></p><p class="game-help">Your single action applies to both component tables. The simulated opponent chooses <strong id="dec-opponent-label"></strong>.</p><div class="game-columns"><div class="game-panel"><h3>Component 1</h3><table class="game-matrix component-matrix"><thead><tr><th></th><th class="choice-col" data-action="Left">Left</th><th class="choice-col" data-action="Right">Right</th></tr></thead><tbody><tr><th class="choice-row" data-action="Top">Top</th><td data-row="Top" data-col="Left">72, 60</td><td data-row="Top" data-col="Right">72, 96</td></tr><tr><th class="choice-row" data-action="Bottom">Bottom</th><td data-row="Bottom" data-col="Left">60, 60</td><td data-row="Bottom" data-col="Right">60, 96</td></tr></tbody></table></div><div class="game-panel"><h3>Component 2</h3><table class="game-matrix component-matrix"><thead><tr><th></th><th class="choice-col" data-action="Left">Left</th><th class="choice-col" data-action="Right">Right</th></tr></thead><tbody><tr><th class="choice-row" data-action="Top">Top</th><td data-row="Top" data-col="Left">24, 0</td><td data-row="Top" data-col="Right">0, 24</td></tr><tr><th class="choice-row" data-action="Bottom">Bottom</th><td data-row="Bottom" data-col="Left">0, 24</td><td data-row="Bottom" data-col="Right">24, 0</td></tr></tbody></table></div></div><p id="dec-selection">No action selected.</p><p class="small-note">The two component payoffs sum to the corresponding Aggregated payoff for every cell in this selected base game.</p><button class="button" id="dec-submit">Submit choice</button></section><section id="finished" class="stage demo-card"><h2>Demonstration complete</h2><p>You have completed one Aggregated round and one Decomposed round. No decision data was collected or uploaded.</p><div class="end-actions"><button class="button" id="restart-demo">Try the experiment demo again</button><a class="button secondary" href="../index.html#research">Return to research page</a></div></section></main><script src="demo.js"></script></body></html>
